@@ -25,26 +25,26 @@ final class ViewController: UIViewController {
         setupRedSlider()
         setupGreenSlider()
         setupBlueSlider()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        selectedColorViewSetup()
         setupRedValue()
         setupGreenValue()
         setupBlueValue()
     }
     
+    override func viewWillLayoutSubviews() {
+        selectedColorViewSetup()
+    }
+    
     // MARK: - IBActions
     @IBAction func redSliderAction() {
-        redValue.text = String(format: "%.2f", redSlider.value)
+        setupRedValue()
     }
     
     @IBAction func greenSliderAction() {
-        greenValue.text = String(format: "%.2f", greenSlider.value)
+        setupGreenValue()
     }
     
     @IBAction func blueSliderAction() {
-        blueValue.text = String(format: "%.2f", blueSlider.value)
+        setupBlueValue()
     }
     
     //MARK: - Private methods
@@ -58,7 +58,6 @@ final class ViewController: UIViewController {
     
     private func setupBlueValue() {
         blueValue.text = String(format: "%.2f", blueSlider.value)
-        
     }
     
     private func setupRedSlider() {
@@ -90,5 +89,4 @@ final class ViewController: UIViewController {
             blue: CGFloat(blueSlider.value),
             alpha: 1)
     }
-    
 }
