@@ -22,64 +22,73 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedColorView.layer.cornerRadius = 15
         setupRedSlider()
-        setupRedValue()
         setupGreenSlider()
-        setupGreenValue()
         setupBlueSlider()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        selectedColorViewSetup()
+        setupRedValue()
+        setupGreenValue()
         setupBlueValue()
     }
     
     // MARK: - IBActions
-
     @IBAction func redSliderAction() {
-        redValue.text = (round(redSlider.value * 100) / 100).formatted()
+        redValue.text = String(format: "%.2f", redSlider.value)
     }
     
     @IBAction func greenSliderAction() {
-        greenValue.text = (round(greenSlider.value * 100) / 100).formatted()
+        greenValue.text = String(format: "%.2f", greenSlider.value)
     }
     
     @IBAction func blueSliderAction() {
-        blueValue.text = (round(blueSlider.value * 100) / 100).formatted()
+        blueValue.text = String(format: "%.2f", blueSlider.value)
     }
-    
-    
     
     //MARK: - Private methods
     private func setupRedValue() {
-        redValue.text = redSlider.value.formatted()
+        redValue.text = String(format: "%.2f", redSlider.value)
     }
     
     private func setupGreenValue() {
-        greenValue.text = greenSlider.value.formatted()
+        greenValue.text = String(format: "%.2f", greenSlider.value)
     }
     
     private func setupBlueValue() {
-        blueValue.text = blueSlider.value.formatted()
+        blueValue.text = String(format: "%.2f", blueSlider.value)
+        
     }
     
     private func setupRedSlider() {
         redSlider.value = 0.5
-        redSlider.minimumValue = 0.0
-        redSlider.maximumValue = 1.0
+        redSlider.minimumValue = 0
+        redSlider.maximumValue = 1
         redSlider.minimumTrackTintColor = .red
     }
     
     private func setupGreenSlider() {
         greenSlider.value = 0.5
-        greenSlider.minimumValue = 0.0
-        greenSlider.maximumValue = 1.0
+        greenSlider.minimumValue = 0
+        greenSlider.maximumValue = 1
         greenSlider.minimumTrackTintColor = .green
     }
     
     private func setupBlueSlider() {
         blueSlider.value = 0.5
-        blueSlider.minimumValue = 0.0
-        blueSlider.maximumValue = 1.0
+        blueSlider.minimumValue = 0
+        blueSlider.maximumValue = 1
         blueSlider.minimumTrackTintColor = .blue
     }
     
+    private func selectedColorViewSetup() {
+        selectedColorView.layer.cornerRadius = 15
+        selectedColorView.backgroundColor = .init(
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
+            alpha: 1)
+    }
+    
 }
-
